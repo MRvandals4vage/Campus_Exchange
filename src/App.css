@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+/* Smooth mobile menu animation */
+.md-hidden {
+  transition: all 0.3s ease-in-out;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.md-hidden.block {
+  max-height: 500px;
+}
