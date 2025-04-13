@@ -1,4 +1,3 @@
-// src/pages/Signup.js
 import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../firebase';
@@ -31,42 +30,44 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-md">
-        <h2 className="text-3xl font-bold mb-6 text-center text-blue-600">Create an Account</h2>
-        {error && <p className="text-red-500 mb-4 text-sm">{error}</p>}
-        <form onSubmit={handleSignup} className="space-y-4">
+    <div className="min-h-screen flex items-center justify-center bg-black px-4">
+      <div className="bg-gray-900 shadow-xl rounded-xl p-10 w-full max-w-md border border-yellow-500">
+        <h2 className="text-3xl font-bold mb-8 text-center text-yellow-400 tracking-wide">
+          Create an Account
+        </h2>
+        {error && <p className="text-red-400 mb-4 text-sm">{error}</p>}
+        <form onSubmit={handleSignup} className="space-y-5">
           <input
             ref={nameRef}
             type="text"
             placeholder="Full Name"
-            className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-3 bg-black text-yellow-200 border border-yellow-600 rounded focus:outline-none focus:ring-2 focus:ring-yellow-500"
             required
           />
           <input
             ref={emailRef}
             type="email"
             placeholder="Email"
-            className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-3 bg-black text-yellow-200 border border-yellow-600 rounded focus:outline-none focus:ring-2 focus:ring-yellow-500"
             required
           />
           <input
             ref={passwordRef}
             type="password"
             placeholder="Password"
-            className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-3 bg-black text-yellow-200 border border-yellow-600 rounded focus:outline-none focus:ring-2 focus:ring-yellow-500"
             required
           />
           <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded transition duration-200"
+            className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 rounded transition duration-200"
           >
             Sign Up
           </button>
         </form>
-        <p className="mt-4 text-sm text-center text-gray-600">
+        <p className="mt-6 text-sm text-center text-yellow-300">
           Already have an account?{' '}
-          <a href="/login" className="text-blue-600 hover:underline">
+          <a href="/login" className="text-yellow-400 underline hover:text-yellow-200">
             Log in
           </a>
         </p>

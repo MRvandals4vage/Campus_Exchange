@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { auth } from "../firebase";
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { auth } from '../firebase';
 import LoadingSpinner from '../components/LoadingSpinner';
 
 const Login = () => {
@@ -9,8 +9,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const provider = new GoogleAuthProvider();
-  
-  // Clear error when component unmounts or before new attempt
+
   useEffect(() => () => setError(''), []);
 
   const handleSignIn = async () => {
@@ -18,18 +17,13 @@ const Login = () => {
     setError('');
     try {
       const result = await signInWithPopup(auth, provider);
-      
-      // Successful sign-in check
       if (result?.user) {
-        // Delay navigation slightly to ensure state updates
         await new Promise(resolve => setTimeout(resolve, 100));
         navigate('/');
-        return; // Exit early on success
+        return;
       }
-      
       throw new Error('Sign-in completed but no user found');
     } catch (err) {
-      // Only show errors for actual failures, not successful logins
       if (!err.message.includes('auth/popup-closed-by-user')) {
         setError('Sign-in failed. Please try again.');
         console.error('Sign-in error:', err);
@@ -40,16 +34,20 @@ const Login = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-12 p-6 bg-white rounded shadow">
-      <h1 className="text-2xl font-bold mb-6">CampusExchange Login</h1>
-      {error && <p className="text-red-500 mb-4">{error}</p>}
-      <button
-        onClick={handleSignIn}
-        disabled={loading}
-        className="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 flex items-center justify-center disabled:opacity-50"
-      >
-        {loading ? <LoadingSpinner /> : 'Sign in with Google'}
-      </button>
+    <div className="min-h-screen flex items-center justify-center bg-black px-4">
+      <div className="bg-gray-900 shadow-xl rounded-xl p-10 w-full max-w-md border border-yellow-500">
+        <h1 className="text-3xl font-bold mb-8 text-center text-yellow-400 tracking-wide">
+          CampusExchange Login
+        </h1>
+        {error && <p className="text-red-400 mb-4 text-sm">{error}</p>}
+        <button
+          onClick={handleSignIn}
+          disabled={loading}
+          className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 rounded transition duration-200 flex items-center justify-center disabled:opacity-50"
+        >
+          {loading ? <LoadingSpinner /> : 'Sign in with Google'}
+        </button>
+      </div>
     </div>
   );
 };
